@@ -23,6 +23,11 @@ const { title } = Astro.props;
       integrity='sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM'
       crossorigin='anonymous'
     />
+    <script
+      src='https://platform.linkedin.com/badges/js/profile.js'
+      async
+      defer
+      type='text/javascript'></script>
   </head>
 
   <body>
@@ -55,16 +60,12 @@ const { title } = Astro.props;
   main {
     margin: auto;
     padding: 1.5rem;
-    max-width: 70ch;
+    max-width: 75ch;
   }
 
   h1 {
     font-size: 3rem;
     font-weight: 800;
     margin: 0;
-  }
-
-  input[type="submit"] {
-    background-image: var(--accent-gradient);
   }
 </style>

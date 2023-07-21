@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
+import LinkedinBadge from "../components/LinkedinBadge.astro";
 ---
 
 <Layout title='Welcome to Astro.'>
@@ -14,17 +15,21 @@ import Card from "../components/Card.astro";
         href='/forgot-password'
         title='Forgot Password'
         body='From here you can send the mail with the token'
+        target='_self'
       />
       <Card
         href='/change-password'
         title='Change Password'
         body='To change the password, you will need the token'
+        target='_self'
       />
       <Card
-        href='https://www.jesusarrioja.dev/'
+        href='https://jesusarrioja.dev/'
         title='My Portafolio'
-        body='I introduce myself as a Web Developer specialized in Wordpress.'
+        body='I introduce myself as a Web Developer specialized in Wordpress, web servers and cloud computing services (DigitalOcean, AWS, Google Cloud Platform)'
+        target='_blank'
       />
+      <LinkedinBadge />
     </ul>
   </main>
 </Layout>
