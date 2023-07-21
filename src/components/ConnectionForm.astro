@@ -1,5 +1,12 @@
+---
+interface Props {
+  endpoint: string;
+}
+const { endpoint } = Astro.props;
+---
+
 <div class='input-group flex-nowrap my-3'>
-  <div class='form-floating'>
+  <div class='input-group form-floating'>
     <input
       type='text'
       name='HOST'
@@ -10,6 +17,7 @@
       value='http://localhost:5000'
       id='HOST'
     />
+    <span class='input-group-text' id='basic-addon2'>{endpoint}</span>
     <label for='HOST'>API Base URL</label>
   </div>
 </div>
