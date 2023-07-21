@@ -1,12 +1,15 @@
 <div class='input-group flex-nowrap my-3'>
-  <span class='input-group-text' id='addon-wrapping'>Host</span>
-  <input
-    type='text'
-    class='form-control'
-    placeholder='http://localhost:5000'
-    aria-label='Coloca tu host y puerto'
-    aria-describedby='addon-wrapping'
-    value='http://localhost:5000'
-    id='HOST'
-  />
+  <div class='form-floating'>
+    <input
+      type='text'
+      name='HOST'
+      class='form-control'
+      placeholder='http://localhost:5000'
+      aria-label='Coloca tu host y puerto'
+      aria-describedby='addon-wrapping'
+      value='http://localhost:5000'
+      id='HOST'
+    />
+    <label for='HOST'>API Base URL</label>
+  </div>
 </div>
