@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import LinkedinBadge from "../components/LinkedinBadge.astro";
+import SignupForm from "../components/SignupForm.astro";
 ---
 
 <Layout title='Welcome to my Forms playground.'>
@@ -9,7 +10,25 @@ import LinkedinBadge from "../components/LinkedinBadge.astro";
     <h1 class='mb-3'>
       Welcome to my <span class='text-gradient'>Forms</span> playground.
     </h1>
-
+    <SignupForm />
+    <div
+      id='message'
+      class='toast align-items-center border-0 mt-3 m-auto'
+      role='alert'
+      aria-live='assertive'
+      aria-atomic='true'
+    >
+      <div class='d-flex'>
+        <div id='message-body' class='toast-body'>
+          Hello, world! This is a toast message.
+        </div>
+        <button
+          type='button'
+          class='btn-close btn-close-white me-2 m-auto'
+          data-bs-dismiss='toast'
+          aria-label='Close'></button>
+      </div>
+    </div>
     <ul role='list' class='link-card-grid'>
       <Card
         href='/forgot-password'
@@ -33,6 +52,86 @@ import LinkedinBadge from "../components/LinkedinBadge.astro";
     </ul>
   </main>
 </Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const signupForm = document.getElementById(
+      "signup-form"
+    ) as HTMLFormElement;
+    const messageElement = document.getElementById("message");
+    const messageBody = document.getElementById("message-body");
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(messageElement);
+
+    signupForm.addEventListener("submit", async (e) => {
+      e.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+      console.log("click");
+
+      const nameInput = document.getElementById(
+        "name-input"
+      ) as HTMLInputElement;
+      const lastNameInput = document.getElementById(
+        "lastname-input"
+      ) as HTMLInputElement;
+      const emailInput = document.getElementById(
+        "email-input"
+      ) as HTMLInputElement;
+      const passwordInput = document.getElementById(
+        "password-input"
+      ) as HTMLInputElement;
+
+      // Obtener los valores de los campos del formulario
+      const name = nameInput.value;
+      const lastName = lastNameInput.value;
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      // Crear el objeto de datos que se enviará al servidor
+      const formData = {
+        firstName: name,
+        lastName: lastName,
+        email,
+        password,
+      };
+
+      try {
+        // Enviar la solicitud POST al servidor
+        const response = await fetch(
+          "https://api-jesusarrioja-dev.fl0.io/api/sessions/signup",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        );
+
+        if (response.ok) {
+          // El registro fue exitoso, puedes redirigir al usuario a otra página o mostrar un mensaje de éxito
+          console.log("Registro exitoso");
+          messageBody.innerText = "Registro exitoso";
+          if (messageElement.classList.contains("text-bg-danger")) {
+            messageElement.classList.remove("text-bg-danger");
+          }
+          messageElement.classList.add("text-bg-success");
+          toastBootstrap.show();
+        } else {
+          // Ocurrió un error en el servidor, puedes manejarlo de acuerdo a tus necesidades
+          console.error("Error en el registro");
+          messageBody.innerText = "Error en el registro";
+          if (messageElement.classList.contains("text-bg-success")) {
+            messageElement.classList.remove("text-bg-success");
+          }
+          messageElement.classList.add("text-bg-danger");
+          toastBootstrap.show();
+        }
+      } catch (error) {
+        // Manejar errores de red u otros errores
+        console.error("Error de red:", error);
+      }
+    });
+  });
+</script>
 
 <style>
   .instructions {
