@@ -1,0 +1,25 @@
+---
+const {
+  id,
+  code,
+  title,
+  description,
+  category,
+  price,
+  stock,
+  status,
+  thumbnails,
+} = Astro.props;
+---
+
+<tr class={`productId-${id}`}>
+  <th scope='row'>{id}</th>
+  <td>{code}</td>
+  <td>{title}</td>
+  <td>{description}</td>
+  <td>{price}</td>
+  <!-- <td>{status}</td> -->
+  <td>{stock}</td>
+  <td>{category}</td>
+  <!-- <td>{thumbnails}</td> -->
+</tr>

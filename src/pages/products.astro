@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProductTable from "../components/ProductsTable.astro";
+import ProductRow from "../components/ProductRow.astro";
+const { payload } = await fetch(`${import.meta.env.API_URL}/products`).then(
+  (r) => r.json()
+);
+---
+
+<Layout title='Productos'>
+  <ProductTable>
+    {
+      payload.map(
+        ({
+          id,
+          code,
+          title,
+          description,
+          category,
+          price,
+          stock,
+          status,
+          thumbnails,
+        }) => (
+          <ProductRow
+            {id}
+            {code}
+            {title}
+            {description}
+            {category}
+            {price}
+            {stock}
+            {status}
+            {thumbnails}
+          />
+        )
+      )
+    }
+  </ProductTable>
+</Layout>
